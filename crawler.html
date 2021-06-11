@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+      
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
+
+    <title>Ifgi Staff Poster</title>
+  </head>
+  <body>
+    <h1>Ifgi Staff Poster</h1>
+    <div class="bricklayer" id="cards"></div>
+    <div id="modals"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
+    <script>
+      $.get('https://www.uni-muenster.de/Geoinformatics/en/institute/staff/index.php', function(response) {
+        let parser = new DOMParser();
+        let parsedHtml = parser.parseFromString(response, 'text/html');
+        //console.log(parsedHtml.getElementById("ifgistaff"));
+        var tds = parsedHtml.querySelectorAll('tbody td');
+        html = '';
+        for(i = 0; i < tds.length; i+=3) {
+            name = tds[i].querySelectorAll('a')[0].innerHTML;
+            room = tds[i+1].innerHTML;
+            phone = tds[i+2].innerHTML;
+            href = tds[i].querySelectorAll('a')[0].href
+            href = href.replace("http://127.0.0.1:56338/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
+            addmodal(href, 'test'+i);
+            html += '<div class="card" style="width: 18rem;">';
+            html += '<img class="card-img-top" src="https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg" alt="Card image cap">';
+            html += '<div class="card-body">';
+            html += '<h5 class="card-title">'+name+'</h5>';
+            html += '<p class="card-text">Room: '+room+'<br> Phone: '+phone+'</p>';
+            html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#'+'test'+i+'">Know more</button>'; 
+            //html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Launch demo modal</button>'
+            html += '</div></div>';
+            //console.log("-----");
+            //console.log(href);
+            //console.log(tds[i+1].innerHTML);
+            //console.log(tds[i+2])
+            //console.log("-----");
+        }
+        document.getElementById("cards").innerHTML = html;
+      })
+        
+      function addmodal(href, modalid){
+          $.get(href, function(response) {
+              parser = new DOMParser();
+              parsedHtml = parser.parseFromString(response, 'text/html');
+              //console.log(parsedHtml.getElementById("inhalt"));
+              modhtml = document.getElementById("modals").innerHTML;
+              modhtml += '<div class="modal fade bd-example-modal-lg" id="'+modalid+'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">';
+              modhtml += '<div class="modal-dialog modal-lg">';
+              modhtml += '<div class="modal-content">';
+              modhtml += '<div class="modal-header">';
+              modhtml += '<h5 class="modal-title">Modal title</h5>';
+              modhtml += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+              modhtml += '<span aria-hidden="true">&times;</span></button></div>';
+              modhtml += '<div class="modal-body">';
+              modhtml += parsedHtml.getElementById("inhalt").innerHTML;
+              modhtml += '</div>';
+              modhtml += '<div class="modal-footer">';
+              modhtml += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+              modhtml += '</div>';
+              modhtml += '</div></div></div>';
+              document.getElementById("modals").innerHTML = modhtml;
+          })
+      }
+    </script>
+  </body>
+</html>
+

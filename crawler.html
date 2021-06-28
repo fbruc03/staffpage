@@ -12,6 +12,8 @@
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
 
+  <link rel="stylesheet" href="css/style.css">
+
   <title>Ifgi Staff Poster</title>
 </head>
 
@@ -42,12 +44,13 @@
         href = href.replace("http://localhost:3000/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
         addmodal(href, 'test' + i);
         html += '<div class="card" style="width: 18rem; height: 30rem;">';
-        html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';
-        html += '<div class="card-body">';
-        html += '<h5 class="card-title">' + name + '</h5>';
-        html += '<p class="card-text">Room: ' + room + '<br> Phone: ' + phone + '</p>';
-        html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button>';
-        //html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Launch demo modal</button>'
+        html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)">';
+        // html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';
+        // html += '<div class="card-body">';
+        // html += '<h5 class="card-title">' + name + '</h5>';
+        // html += '<p class="card-text">Room: ' + room + '<br> Phone: ' + phone + '</p>';
+        // html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button>';
+        // //html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Launch demo modal</button>'
         html += '</div></div>';
         //console.log("-----");
         //console.log(href);
@@ -70,9 +73,12 @@
             if(imgElement != null) {
             imgSrc = imgElement.src
             picElement = parser.parseFromString(html, 'text/html').getElementById("pic"+modalid.split('test')[1]);
-            //console.log(picElement);
-            document.getElementById("pic"+modalid.split('test')[1]).setAttribute('src', imgSrc);
+            console.log(imgSrc);
+            //document.getElementById("pic"+modalid.split('test')[1]).setAttribute('src', imgSrc);
             //document.getElementById("pic"+modalid.split('test')[1]).innerHTML = picElement;
+            cardFront = document.getElementById('img'+modalid.split('test')[1]);
+            cardFront.setAttribute('style', 'background-image: url("'+ imgSrc +'")')
+            console.log(cardFront);
             }
         })
     }
@@ -101,5 +107,4 @@
     }
   </script>
 </body>
-
 </html>

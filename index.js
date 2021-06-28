@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 
 const port = 3000;
+
+app.use('/css', express.static(__dirname + '/css/'));
  
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/crawler.html')

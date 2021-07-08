@@ -18,7 +18,6 @@
 </head>
 
 <body>
-  <h1>Ifgi Staff Poster</h1>
   <div class="bricklayer" id="cards"></div>
   <div id="modals"></div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -33,7 +32,7 @@
     $.get('https://www.uni-muenster.de/Geoinformatics/en/institute/staff/index.php', function (response) {
       let parser = new DOMParser();
       let parsedHtml = parser.parseFromString(response, 'text/html');
-      //console.log(parsedHtml.getElementById("ifgistaff"));
+      console.log(parsedHtml.getElementById("ifgistaff"));
       var tds = parsedHtml.querySelectorAll('tbody td');
       html = '';
       for (i = 0; i < tds.length; i += 3) {
@@ -44,25 +43,22 @@
         href = href.replace("http://localhost:3000/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
         addmodal(href, 'test' + i);
         html += '<div class="card" style="width: 18rem; height: 30rem;">';
-<<<<<<< Updated upstream
-        html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)">';
-=======
         html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)"><div id="nameContent"><h5>' +name+ '</h5></div></div>';
         html += '<div class="back"><div><p>' +name+ '</p><p>Room: ' +room+ '</p><p>Phone: ' +phone+ '</p><p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button></p></div></div>'
->>>>>>> Stashed changes
         // html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';
         // html += '<div class="card-body">';
         // html += '<h5 class="card-title">' + name + '</h5>';
         // html += '<p class="card-text">Room: ' + room + '<br> Phone: ' + phone + '</p>';
-        // html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button>';
+        //html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button>';
         // //html += '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Launch demo modal</button>'
-        html += '</div></div>';
+        html += '</div>';
         //console.log("-----");
         //console.log(href);
         //console.log(tds[i+1].innerHTML);
         //console.log(tds[i+2])
         //console.log("-----");
         getStaffImg(href, 'test' + i);
+        getStaffWebsite(href, 'test' + i);
       }
       document.getElementById("cards").innerHTML = html;
     })
@@ -78,13 +74,21 @@
             if(imgElement != null) {
             imgSrc = imgElement.src
             picElement = parser.parseFromString(html, 'text/html').getElementById("pic"+modalid.split('test')[1]);
-            console.log(imgSrc);
             //document.getElementById("pic"+modalid.split('test')[1]).setAttribute('src', imgSrc);
             //document.getElementById("pic"+modalid.split('test')[1]).innerHTML = picElement;
             cardFront = document.getElementById('img'+modalid.split('test')[1]);
             cardFront.setAttribute('style', 'background-image: url("'+ imgSrc +'")')
-            console.log(cardFront);
             }
+        })
+    }
+
+    function getStaffWebsite (href, modalid) {
+      $.get(href, function(response) {
+            parser = new DOMParser();
+            parsedHtml = parser.parseFromString(response, 'text/html');
+            var inhalt = parsedHtml.getElementById("inhalt");
+            var website = inhalt.getElementsByClassName("ext");
+            console.log(website);
         })
     }
 
@@ -97,7 +101,7 @@
         modhtml += '<div class="modal-dialog modal-lg">';
         modhtml += '<div class="modal-content">';
         modhtml += '<div class="modal-header">';
-        // modhtml += '<h5 class="modal-title">Modal title</h5>';
+        //modhtml += '<h5 class="modal-title">Modal title</h5>';
         modhtml += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
         modhtml += '<span aria-hidden="true">&times;</span></button></div>';
         modhtml += '<div class="modal-body">';

@@ -44,7 +44,12 @@
         href = href.replace("http://localhost:3000/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
         addmodal(href, 'test' + i);
         html += '<div class="card" style="width: 18rem; height: 30rem;">';
+<<<<<<< Updated upstream
         html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)">';
+=======
+        html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)"><div id="nameContent"><h5>' +name+ '</h5></div></div>';
+        html += '<div class="back"><div><p>' +name+ '</p><p>Room: ' +room+ '</p><p>Phone: ' +phone+ '</p><p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button></p></div></div>'
+>>>>>>> Stashed changes
         // html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';
         // html += '<div class="card-body">';
         // html += '<h5 class="card-title">' + name + '</h5>';
@@ -92,7 +97,7 @@
         modhtml += '<div class="modal-dialog modal-lg">';
         modhtml += '<div class="modal-content">';
         modhtml += '<div class="modal-header">';
-        modhtml += '<h5 class="modal-title">Modal title</h5>';
+        // modhtml += '<h5 class="modal-title">Modal title</h5>';
         modhtml += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
         modhtml += '<span aria-hidden="true">&times;</span></button></div>';
         modhtml += '<div class="modal-body">';

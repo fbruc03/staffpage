@@ -45,7 +45,7 @@
     position: absolute;
     width: 60px;
     height: 4px;
-    background: linear-gradient(135deg, #1a9be6, #1a57e6);
+    /* background: linear-gradient(135deg, #1a9be6, #1a57e6); */
     bottom: 0;
   }
   
@@ -113,14 +113,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, #1a9be6, #1a57e6);
+    /* background: linear-gradient(135deg, #1a9be6, #1a57e6); */
     opacity: 0.25;
     z-index: -1;
   }
-  .card:hover .front {
+  .card:active .front {
     transform: rotateY(180deg);
   }
-  .card:nth-child(even):hover .front {
+  .card:nth-child(even):active .front {
     transform: rotateY(-180deg);
   }
   
@@ -136,7 +136,7 @@
     box-shadow: 0 0 10px 10px rgba(26, 87, 230, 0.25);
     background-color: rgba(26, 87, 230, 0.25);
   }
-  .card:hover .back {
+  .card:active .back {
     transform: rotateY(0deg);
   }
   .card:nth-child(even) .back {
@@ -149,6 +149,19 @@
     box-shadow: 0 0 10px 10px rgba(230, 26, 60, 0.25);
     background-color: rgba(230, 26, 60, 0.25);
   }
-  .card:nth-child(even):hover .back {
+  .card:nth-child(even):active .back {
     transform: rotateY(0deg);
   }
+
+#img {
+  position: relative;
+}
+
+#nameContent {
+  position: absolute;
+  bottom: 0;
+}
+
+.class { 
+	font-family: Geneva,Tahoma,Verdana,sans-serif; 
+}

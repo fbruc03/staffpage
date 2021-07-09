@@ -157,3 +157,10 @@ h5 {
   .card:nth-child(even):hover .back {
     transform: rotateY(0deg);
   }
+
+  a[href] {
+    cursor: default;
+    pointer-events: none;
+    color: black;
+    text-decoration: underline;
+  }

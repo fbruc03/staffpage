@@ -52,9 +52,9 @@
         room = tds[i + 1].innerHTML;
         phone = tds[i + 2].innerHTML;
         href = tds[i].querySelectorAll('a')[0].href
-        href = href.replace("http://127.0.0.1:65058/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
+        href = href.replace("http://localhost:3000/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
         addmodal(href, 'test' + i);
-        html += '<div class="card" style="width: 18rem; height: 30rem;">';
+        html += '<div class="card" style="width: 10%; height: 15rem;">';
         html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)"><div id="nameContent"><h5>' +name+ '</h5></div></div>';
         html += '<div class="back"><div><p>' +name+ '</p><p>Room: ' +room+ '</p><p>Phone: ' +phone+ '</p><p><button type="button" class="btn btn-dark" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button></p></div></div>'
         // html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+  <!-- <div><img src="/img/logo_ifgi_long_EN.png" alt="logo" width="372" height="137" class="center"></div> -->
   <div class="bricklayer" id="cards"></div>
   <div id="modals"></div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -42,7 +43,7 @@
         href = tds[i].querySelectorAll('a')[0].href
         href = href.replace("http://localhost:3000/", "https://www.uni-muenster.de/"); //REPLACE THIS WITH YOUR LOCALHOST IP, ENABLE CORS
         addmodal(href, 'test' + i);
-        html += '<div class="card" style="width: 18rem; height: 30rem;">';
+        html += '<div class="card">';
         html += '<div id="img' + i + '" class="front" style="background-image: url(https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg)"><div id="nameContent"><h5>' +name+ '</h5></div></div>';
         html += '<div class="back"><div><p>' +name+ '</p><p>Room: ' +room+ '</p><p>Phone: ' +phone+ '</p><p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#' + 'test' + i + '">Know more</button></p></div></div>'
         // html += '<img id="pic'+i+'" class="card-img-top" src="' + 'https://www.uni-muenster.de/imperia/md/images/geoinformatics/sitcom/sitcomer.jpeg' + '" alt="Card image cap">';
